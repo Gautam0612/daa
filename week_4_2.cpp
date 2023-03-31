@@ -1,5 +1,7 @@
+#include<time.h>
 #include <bits/stdc++.h>
 using namespace std;
+
 
 int merge(int arr[], int temp[], int start, int mid, int end) {
     int i = start, j = mid + 1, k = 0;
@@ -37,15 +39,21 @@ int mergeSort(int arr[], int temp[], int start, int end) {
 
 int main() {
     int t;
+    clock_t start,end;
+    double time;
     cin >> t;
     while (t--) {
-        int n;
-        cin >> n;
+        int n=1000;
         int arr[n], temp[n];
-        for (int i = 0; i < n; i++) {
-            cin >> arr[i];
-        }
+    for (int i = 0; i < n; i++)
+    {
+        arr[i] = (rand() %(n*10)) + 1;
+        cout << arr[i] << endl;
+    }
+        start = clock();
         int comparisons = mergeSort(arr, temp, 0, n - 1);
+        end = clock();
+        time = ((double)(end-start))/CLOCKS_PER_SEC *1000;
         cout << "Sorted array: ";
         for (int i = 0; i < n; i++) {
             cout << arr[i] << " ";
@@ -54,5 +62,6 @@ int main() {
         cout << "Comparisons: " << comparisons << endl;
         cout << "Inversions: " << comparisons - n + 1 << endl;
     }
+    cout << "time : " << time;
     return 0;
 }
